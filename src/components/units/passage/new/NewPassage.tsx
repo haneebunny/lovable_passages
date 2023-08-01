@@ -17,7 +17,7 @@ export default function NewPassage() {
   } = useForm<FormData>();
 
   const tempFunction = async () => {
-    const response = await axios.post("/api/books", {
+    const response = await axios.post("/books/api", {
       data: "hi",
     });
 
