@@ -1,13 +1,13 @@
 import { MongoClient, OptionalId } from "mongodb";
 
-export async function GET(req: OptionalId<Document>, res) {
+export async function POST(req: OptionalId<Document>, res) {
   console.log(req, res);
   // 애플리케이션과 데이터베이스 연결
   const client = await MongoClient.connect(
     "mongodb+srv://lovable:lovable1231@cluster-hani.g5wiwm0.mongodb.net/?retryWrites=true&w=majority"
   );
 
-  const database = client.db();
+  const database = client.db("lovablePassages");
 
   const userCollection = database.collection("user");
 
