@@ -9,6 +9,10 @@ import MySessionProvider from "@/components/common/user/Provider";
 // Global Styles, useSession()
 import GlobalSetting from "@/components/common/GlobalSetting";
 
+// layout
+import Navigation from "./ui/Navigation";
+import Header from "./ui/Header";
+
 const inter = Inter({ subsets: ["latin"] });
 
 // 직접 넣으면 안되고 Metadata api를 이용해서 넣어야 한다.
@@ -26,7 +30,11 @@ export default function RootLayout({
     <html lang="ko">
       <body className={inter.className}>
         <MySessionProvider>
-          <GlobalSetting>{children}</GlobalSetting>
+          <GlobalSetting>
+            <Header />
+            <Navigation />
+            {children}
+          </GlobalSetting>
         </MySessionProvider>
       </body>
     </html>
