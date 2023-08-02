@@ -8,6 +8,7 @@ import MySessionProvider from "@/components/common/user/Provider";
 
 // Global Styles, useSession()
 import GlobalSetting from "@/components/common/GlobalSetting";
+import Navigation from "./ui/Navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,10 @@ export default function RootLayout({
     <html lang="ko">
       <body className={inter.className}>
         <MySessionProvider>
-          <GlobalSetting>{children}</GlobalSetting>
+          <GlobalSetting>
+            <Navigation />
+            {children}
+          </GlobalSetting>
         </MySessionProvider>
       </body>
     </html>
