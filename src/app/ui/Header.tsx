@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { UserInfoState } from "@/common/store/atom";
@@ -9,7 +10,11 @@ export default function Header() {
 
   return (
     <header className="pt-3 flex flex-row items-center gap-5 justify-end">
-      <img className="w-10  rounded-full" src={userInfo?.image || ""} />
+      <img
+        alt="userInfoImg"
+        className="w-10  rounded-full"
+        src={userInfo?.image || ""}
+      />
       <span> {userInfo?.name}</span>
       <span> {userInfo?.email}</span>
       {userInfo ? (
