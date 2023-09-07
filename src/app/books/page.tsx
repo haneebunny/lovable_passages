@@ -1,3 +1,9 @@
+import Books from "@/components/units/books/Books";
+
 export default function BooksPage() {
-  return <div>Boooooo</div>;
+  return (
+    <div>
+      <Books />
+    </div>
+  );
 }

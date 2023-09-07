@@ -4,8 +4,8 @@ import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type FormData = {
-  page: number;
-  passage: string;
+  name: string;
+  writer: string;
 };
 
 export default function NewPassage() {
@@ -21,7 +21,7 @@ export default function NewPassage() {
       data: "hi",
     });
 
-    console.log("response", response);
+    console.log(response);
   };
 
   const onSubmitForm: SubmitHandler<FormData> = (data: FormData) => {
@@ -34,17 +34,16 @@ export default function NewPassage() {
 
   return (
     <div>
-      <p>SaveParagraph Page</p>
+      <p>Register Book Page</p>
       <div>
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <input
-            {...register("page")}
+            {...register("name")}
             // className=" "
-            type="number"
-            placeholder="쪽수"
+            placeholder="책 이름"
           />
 
-          <input {...register("passage")} placeholder="적어두고 싶은 구절" />
+          <input {...register("writer")} placeholder="저자" />
           <button>저장</button>
         </form>
         <button onClick={tempFunction}>rrrr</button>

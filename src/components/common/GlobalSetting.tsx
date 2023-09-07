@@ -11,7 +11,7 @@ export default function GlobalSetting({
 }: {
   children: React.ReactNode;
 }) {
-  const { data: userSession } = useSession();
+  const { data: userSession, loading } = useSession();
   const setUserInfoState = useSetRecoilState(UserInfoState);
 
   // next-auth 로그인으로 정보 들어오면 전역 변수인 userInfoState에 저장
