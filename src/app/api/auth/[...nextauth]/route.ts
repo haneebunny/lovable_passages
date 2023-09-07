@@ -6,16 +6,16 @@ import KakaoProvider from "next-auth/providers/kakao";
 const handler = NextAuth({
   providers: [
     KakaoProvider({
-      clientId: process.env.KAKAO_ID,
-      clientSecret: process.env.KAKAO_SECRET,
+      clientId: process.env.KAKAO_ID!,
+      clientSecret: process.env.KAKAO_SECRET!,
     }),
     GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: process.env.GOOGLE_ID!,
+      clientSecret: process.env.GOOGLE_SECRET!,
     }),
   ],
   callbacks: {
