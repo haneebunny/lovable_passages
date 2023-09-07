@@ -1,14 +1,30 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import styled from "@emotion/styled";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 
 export default function Main() {
   return (
     <Wrapper>
       <div>
+        <p className="text-[7rem]">공사 중 ~2023.10.10 </p>
+        <p>* 메크리스리마스</p>
+        <p>* 공사 기간은 메이플스토리 점검처럼 무한대로 늘어날 수 있습니다.</p>
+
+        <Link href="https://github.com/haneebunny">
+          <p> * https://github.com/haneebunny</p>
+        </Link>
+
+        <img src="/img/gong.jpeg" alt="메크리스리마스" />
+        <ul>
+            아마도...
+            <li> - react, Next.js(v.13)</li>
+            <li> - mongoDB</li>
+            <li> - vercel -> AWS </li>
+          </ul>
         <div>
-          <p>로그인</p>
           {/* <button onClick={() => signIn("google")}>구글 로그인</button> */}
           <KakaoLoginButton onClick={() => signIn("kakao")}>
             <KakaoSymbol src="/img/auth/kakaoSymbol.png" alt="kakaoSymbol" />

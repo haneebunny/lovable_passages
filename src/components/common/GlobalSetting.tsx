@@ -27,6 +27,6 @@ export default function GlobalSetting({
 
 const Wrapper = styled.div`
   max-width: 768px;
-  /* background-color: skyblue; */
+  background-color: #aabeaa;
   margin: auto;
 `;
