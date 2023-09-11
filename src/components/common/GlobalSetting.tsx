@@ -15,6 +15,7 @@ export default function GlobalSetting({
   const { data: userSession } = useSession();
   const setUserInfoState = useSetRecoilState(UserInfoState);
 
+  console.log("user", userSession);
   // next-auth 로그인으로 정보 들어오면 전역 변수인 userInfoState에 저장
   useEffect(() => {
     if (userSession && userSession.user) {
