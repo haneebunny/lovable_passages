@@ -9,8 +9,6 @@ export default function MySessionProvider({
 }: {
   children: React.ReactNode;
 }) {
-  //   const { data } = useSession();
-
   return (
     <SessionProvider>
       <RecoilRoot>{children}</RecoilRoot>

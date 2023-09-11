@@ -19,7 +19,12 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token }) {
+    session({ session, token }: any) {
+      session.accessToken = token.accessToken;
+      return session;
+    },
+    async jwt({ token, account }) {
+      token.accessToken = account?.access_token;
       token.userRole = "admin";
       return token;
     },
