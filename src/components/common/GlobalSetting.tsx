@@ -12,16 +12,16 @@ export default function GlobalSetting({
 }: {
   children: React.ReactNode;
 }) {
-  const { data: userSession } = useSession();
+  const { data: session } = useSession();
   const setUserInfoState = useSetRecoilState(UserInfoState);
 
-  console.log("user", userSession);
+  console.log("user", session);
   // next-auth 로그인으로 정보 들어오면 전역 변수인 userInfoState에 저장
   useEffect(() => {
-    if (userSession && userSession.user) {
-      setUserInfoState(userSession.user);
+    if (session && session.user) {
+      setUserInfoState(session.user);
     }
-  }, [userSession]);
+  }, [session]);
 
   return <Wrapper>{children}</Wrapper>;
 }

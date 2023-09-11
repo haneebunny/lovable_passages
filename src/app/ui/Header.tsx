@@ -10,14 +10,19 @@ export default function Header() {
 
   return (
     <header className="pt-3 flex flex-row items-center gap-5 justify-end">
-      <img
-        alt="userInfoImg"
-        className="w-10 h-10 rounded-full object-cover"
-        src={userInfo?.image || ""}
-      />
-      {/* userInfoImg없을 때 디폴트 이미지 넣기 */}
-      <span> {userInfo?.name}</span>
-      <span> {userInfo?.email}</span>
+      {userInfo && (
+        <div className="flex flex-row items-center gap-5">
+          <img
+            alt="userInfoImg"
+            className="w-10 h-10 rounded-full object-cover"
+            src={userInfo?.image || ""}
+          />
+          {/* userInfoImg없을 때 디폴트 이미지 넣기 */}
+          <span> {userInfo?.name}</span>
+          <span> {userInfo?.email}</span>
+        </div>
+      )}
+
       {userInfo ? (
         <button onClick={() => signOut()}>로그아웃</button>
       ) : (
