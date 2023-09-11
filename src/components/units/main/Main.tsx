@@ -19,11 +19,11 @@ export default function Main() {
 
         <img src="/img/gong.jpeg" alt="메크리스리마스" />
         <ul>
-            아마도...
-            <li> - react, Next.js(v.13)</li>
-            <li> - mongoDB</li>
-            <li> - vercel -> AWS </li>
-          </ul>
+          아마도...
+          <li> - react, Next.js(v.13)</li>
+          <li> - mongoDB</li>
+          <li> - vercel AWS </li>
+        </ul>
         <div>
           {/* <button onClick={() => signIn("google")}>구글 로그인</button> */}
           <KakaoLoginButton onClick={() => signIn("kakao")}>
