@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-type userInfo = {
+export type userInfo = {
   name?: string | null | undefined;
   email?: string | null | undefined;
   image?: string | null | undefined;

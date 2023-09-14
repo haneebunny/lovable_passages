@@ -6,6 +6,7 @@ import { signIn, signOut } from "next-auth/react";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import Sidebar from "./Sidebar";
+import styled from "@emotion/styled";
 
 export default function Header() {
   const userInfo = useRecoilValue(UserInfoState);
@@ -13,30 +14,43 @@ export default function Header() {
   const [isSidebarOpen, setIsSiderbarOpen] = useState(false);
 
   return (
-    <header className="w-full relative pt-3 px-3 flex flex-row items-center gap-5 justify-end">
-      {userInfo && (
-        <div className="flex flex-row items-center gap-5">
+    <header className="w-full py-3 px-3 flex flex-row items-center gap-5 justify-end ">
+      {userInfo ? (
+        <div
+          onClick={() => setIsSiderbarOpen(true)}
+          className="flex flex-row items-center gap-5 cursor-pointer"
+        >
           <img
             alt="userInfoImg"
             className="w-10 h-10 rounded-full object-cover"
             src={userInfo?.image || ""}
           />
           {/* userInfoImg없을 때 디폴트 이미지 넣기 */}
-          {/* <span> {userInfo?.name}</span>
-          <span> {userInfo?.email}</span> */}
         </div>
+      ) : (
+        <button onClick={() => signIn("kakao")}>입장</button>
       )}
 
-      {userInfo ? (
-        <button className="text-sm" onClick={() => signOut()}>
-          로그아웃
-        </button>
-      ) : (
-        <button onClick={() => signIn("kakao")}>로그인</button>
-      )}
-      <header className="w-3/4 h-screen fixed top-0 right-0 bg-blue-500">
-        <Sidebar isOpen={isSidebarOpen} />
-      </header>
+      <SidebarWrapper isOpen={isSidebarOpen}>
+        <Sidebar
+          setIsOpen={setIsSiderbarOpen}
+          isOpen={isSidebarOpen}
+          userInfo={userInfo}
+        />
+      </SidebarWrapper>
     </header>
   );
 }
+
+const SidebarWrapper = styled.menu`
+  width: fit-content;
+  height: 100vh;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: ${(props: { isOpen: boolean }) => (props.isOpen ? "0" : "-300px")};
+  opacity: ${(props: { isOpen: boolean }) => (props.isOpen ? "100" : "0")};
+
+  /* pointer-events: none; */
+  transition: all 0.2s;
+`;
