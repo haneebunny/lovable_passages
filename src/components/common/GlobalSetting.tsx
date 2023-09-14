@@ -30,4 +30,7 @@ const Wrapper = styled.div`
   max-width: 768px;
   background-color: #aabeaa;
   margin: auto;
+  position: relative;
+  overflow-x: hidden;
+  /* overflow-y: auto; */
 `;
