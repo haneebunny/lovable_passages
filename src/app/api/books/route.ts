@@ -1,30 +1,22 @@
-import { NextResponse } from "next/server";
-import { MongoClient } from "mongodb";
+import { NextRequest, NextResponse } from "next/server";
+import mongoose from "mongoose";
+import { bookSchema } from "@/common/models/book";
 
-// fetch books
-export async function GET(req: Request, res: Response) {
+const MONGODB_URI = `${process.env.MONGO_CLIENT!}`;
+
+const Book = mongoose.models["Book"] || mongoose.model("Book", bookSchema);
+
+// Schema - Collection 대응
+export async function GET(req: NextRequest, res: NextResponse) {
+  let client;
+
   try {
-    const client = await MongoClient.connect(process.env.MONGO_CLIENT!);
-    const database = client.db("lovablePassages");
-    const bookCollection = database.collection("book");
-
-    const cursor = bookCollection.find({});
-    const allValues = await cursor.toArray();
-
-    console.log(allValues);
-    client.close();
-
-    return NextResponse.json(allValues);
+    client = await mongoose.connect(MONGODB_URI);
+    console.log("DB connected");
   } catch (error) {
-    return NextResponse.error();
+    console.error(error);
   }
-}
 
-export async function POST(request: Request) {
-  try {
-    return NextResponse.json({ message: "This Worked", success: true });
-  } catch (err) {
-    console.log(err);
-    return NextResponse.json({ message: err, success: false });
-  }
+  const data = await Book.find().exec();
+  console.log(data);
 }
