@@ -28,9 +28,14 @@ export default function GlobalSetting({
 
 const Wrapper = styled.div`
   max-width: 768px;
+  min-height: 100vh;
   background-color: #aabeaa;
+  color: #1e1d1f;
   margin: auto;
   position: relative;
   overflow-x: hidden;
+
+  // 전체 폰트
+  font-family: "MaruBuri-Regular", serif;
   /* overflow-y: auto; */
 `;
