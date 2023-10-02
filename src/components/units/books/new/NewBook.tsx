@@ -8,7 +8,7 @@ type FormData = {
   writer: string;
 };
 
-export default function NewPassage() {
+export default function NewBook() {
   const {
     register,
     handleSubmit,
