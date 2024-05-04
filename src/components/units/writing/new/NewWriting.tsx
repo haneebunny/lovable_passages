@@ -16,18 +16,20 @@ export default function NewWriting() {
   };
 
   return (
-    <div>
+    <div className="w-3/4 mx-auto flex-col gap-5">
       <div>
         <p>제목</p>
         <input />
       </div>
       <div>
         <p>내용</p>
-        <ToastEditor
-          defaultValue="hahaha"
-          onChangeContent={onChangeContent}
-          editorRef={editorRef}
-        />
+        <div className="w-full h-full">
+          <ToastEditor
+            defaultValue="hahaha"
+            onChangeContent={onChangeContent}
+            editorRef={editorRef}
+          />
+        </div>
       </div>
       <div></div>
 

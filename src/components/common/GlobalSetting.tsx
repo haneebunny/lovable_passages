@@ -36,6 +36,6 @@ const Wrapper = styled.div`
   overflow-x: hidden;
 
   // 전체 폰트
-  font-family: "MaruBuri-Regular", serif;
+  /* font-family: "MaruBuri-Regular", serif; */
   /* overflow-y: auto; */
 `;
