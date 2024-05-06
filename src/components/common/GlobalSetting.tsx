@@ -29,13 +29,21 @@ export default function GlobalSetting({
 const Wrapper = styled.div`
   max-width: 768px;
   min-height: 100vh;
-  background-color: #aabeaa;
+  /* background-color: #aabeaa; */
+  background-color: white;
   color: #1e1d1f;
   margin: auto;
   position: relative;
   overflow-x: hidden;
 
+  @font-face {
+    font-family: "HSSanTokki20-Regular";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2405@1.0/HSSanTokki20-Regular.woff2")
+      format("woff2");
+    font-weight: normal;
+    font-style: normal;
+  }
   // 전체 폰트
-  /* font-family: "MaruBuri-Regular", serif; */
+  font-family: "MaruBuri-Regular", serif;
   /* overflow-y: auto; */
 `;

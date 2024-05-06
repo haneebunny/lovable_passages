@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { connectDB } from "@/lib/database";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -20,7 +19,7 @@ export async function GET() {
 }
 // 240504 작동
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest | Request) {
   try {
     if (!process.env.MONGO_DB) {
       throw new Error("MONGO_DB 환경변수가 설정되지 않았습니다.");
