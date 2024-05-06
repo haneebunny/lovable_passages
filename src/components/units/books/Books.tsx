@@ -30,6 +30,9 @@ export default function Books() {
 
   return (
     <div>
+      <Link href="/books/new">
+        <h1>추가</h1>
+      </Link>
       <h1>BOOK</h1>
       <div>
         {books?.map((book: iBookType) => (
