@@ -17,6 +17,7 @@ export default function Books() {
     async function fetchBooks() {
       try {
         const response = await axios.get("/api/books");
+        console.log(response);
         setBooks(response.data.books);
         console.log("Book page", response.data.books);
       } catch (error) {
@@ -31,7 +32,7 @@ export default function Books() {
     <div>
       <h1>BOOK</h1>
       <div>
-        {books.map((book: iBookType) => (
+        {books?.map((book: iBookType) => (
           <div key={book._id}>
             <div className="w-10 h-10 bg-yellow-200">
               <Link href={`/books/${book._id}`}>{book.title}</Link>

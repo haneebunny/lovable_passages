@@ -21,5 +21,6 @@ const bookSchema = new Schema(
 );
 
 // 스키마를 모델로 변환하고 내보내기
-const Book = mongoose.models?.Book || mongoose.model("Book", bookSchema);
+const Book =
+  mongoose.models?.Book || mongoose.model("Book", bookSchema, "books");
 export default Book;

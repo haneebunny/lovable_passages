@@ -3,10 +3,11 @@ import connectDB from "./connect-db";
 
 export async function getBooks() {
   try {
-    await connectDB();
+    const db = await connectDB();
 
-    console.log("BOok", Book);
-    const books = await Book.find().lean().exec();
+    console.log("BOok", db);
+
+    const books = await db.collection("books").find().lean().exec();
 
     return { books: books };
   } catch (error) {
