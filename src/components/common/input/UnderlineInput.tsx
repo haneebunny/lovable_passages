@@ -27,8 +27,8 @@ const InputContainer = styled.div`
   height: fit-content;
   input {
     padding: 3px;
-    background-color: #a6c27d1e;
-    border: 1px solid #a6c27d7b;
+    background-color: var(--green-00);
+    border: 1px solid var(--green-01);
     border-radius: 3px;
     width: 100%;
     box-sizing: border-box;

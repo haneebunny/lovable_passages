@@ -1,10 +1,17 @@
 import UnderlineInput from "@/components/common/input/UnderlineInput";
 import styled from "@emotion/styled";
+import SearchModal from "../search/SearchModal";
 
 export default function NewBookForm() {
   return (
     <div className="flex flex-row gap-5 p-10">
-      <div className="bg-blue-100 shadow w-56 h-80"></div>
+      <SearchModal />
+      <div className="shadow-lg w-56 h-80">
+        <img
+          src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788998441074.jpg"
+          alt="책 표지"
+        />
+      </div>
       <div className="flex flex-col items-center min-w-[400px]">
         <span className="text-4xl font-bold tracking-widest">제목</span>
         <span className="text-xl italic tracking-tight">한 줄 소개입니다.</span>

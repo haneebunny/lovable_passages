@@ -18,11 +18,14 @@ export default function NewBook() {
   } = useForm<FormData>();
 
   const tempFunction = async () => {
-    const response = await axios.post("/books/api", {
-      data: "hi",
+    console.log("함수");
+    const response = await axios.get("/api/books/search", {
+      params: {
+        query: "모순",
+      },
     });
 
-    console.log(response);
+    console.log(response?.data?.data?.documents);
   };
 
   const onSubmitForm: SubmitHandler<FormData> = (data: FormData) => {
@@ -52,7 +55,13 @@ export default function NewBook() {
         </Button>
         <button onClick={tempFunction}>rrrr</button>
       </div>
-      <AddButton>+</AddButton>
+      <AddButton
+        onClick={() => {
+          tempFunction();
+        }}
+      >
+        +
+      </AddButton>
     </div>
   );
 }
