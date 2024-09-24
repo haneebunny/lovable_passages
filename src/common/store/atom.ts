@@ -1,3 +1,4 @@
+import { IBook } from "@/components/units/books/bookTypes";
 import { atom } from "recoil";
 
 export type userInfo = {
@@ -6,7 +7,12 @@ export type userInfo = {
   image?: string | null | undefined;
 } | null;
 
-export const UserInfoState = atom<userInfo>({
-  key: "UserInfoState",
+export const userInfoState = atom<userInfo>({
+  key: "userInfoState",
   default: null,
+});
+
+export const selectedBooksState = atom<IBook[]>({
+  key: "selectedBooksState",
+  default: [],
 });

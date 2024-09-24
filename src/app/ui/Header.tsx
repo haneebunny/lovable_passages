@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { UserInfoState } from "@/common/store/atom";
+import { userInfoState } from "@/common/store/atom";
 import { signIn, signOut } from "next-auth/react";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
@@ -10,7 +10,7 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 
 export default function Header() {
-  const userInfo = useRecoilValue(UserInfoState);
+  const userInfo = useRecoilValue(userInfoState);
 
   const [isSidebarOpen, setIsSiderbarOpen] = useState(false);
 

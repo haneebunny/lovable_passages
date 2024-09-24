@@ -1,11 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import UnderlineInput from "@/components/common/input/UnderlineInput";
 import styled from "@emotion/styled";
-import SearchModal from "../search/SearchModal";
+import { IBookItemProps } from "../bookTypes";
 
-export default function NewBookForm() {
+export default function NewBookForm({ book }: IBookItemProps) {
   return (
     <div className="flex flex-row gap-5 p-10">
-      <SearchModal />
       <div className="shadow-lg w-56 h-80">
         <img
           src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788998441074.jpg"

@@ -1,27 +1,17 @@
+/* eslint-disable @next/next/no-img-element */
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
+import { extractFirstSentence } from "../../../../../utils/textUtils";
+import {
+  IBook,
+  IBookInfo,
+  IBookItemProps,
+  IBooksListProps,
+} from "../bookTypes";
+import { useSetRecoilState } from "recoil";
+import { selectedBooksState } from "@/common/store/atom";
 
-interface IBook {
-  title: string;
-  contents: string;
-  authors: string[];
-  datetime: string;
-  publisher: string;
-  thumbnail: string;
-}
-
-interface IBookInfo {
-  data: {
-    documents: IBook[];
-    meta: {
-      is_end: boolean;
-      pageabe_count: number;
-      total_count: number;
-    };
-  };
-}
-
-const SearchModal = ({}) => {
+const SearchModal = () => {
   const [searchType, setSearchType] = useState("all"); // all, title, author
   const [query, setQuery] = useState("");
   const [bookInfo, setBookInfo] = useState<IBookInfo>();
@@ -36,18 +26,15 @@ const SearchModal = ({}) => {
 
     setBookInfo(data?.data);
 
-    console.log(data?.data);
-
     // data.data.documents - Array
     // data.data.meta - Object (is_end, pageable_count, total_count)
   };
 
   //   if (!isOpen) return null;
 
-  console.log(bookInfo?.data);
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
-      <div className="bg-white p-5 rounded-lg shadow-lg max-w-lg w-full">
+      <div className="bg-white p-5 rounded-lg shadow-lg max-w-lg w-full max-h-[80vh]">
         <h2 className="text-lg font-bold mb-4">Search Books</h2>
         <form
           onSubmit={handleSearch}
@@ -96,18 +83,50 @@ const SearchModal = ({}) => {
               ? `${bookInfo.data.meta.total_count}개의 검색결과가 있습니다.`
               : "검색하쇼"}
           </p>
+          <BooksList books={bookInfo?.data.documents || []} />
         </div>
       </div>
     </div>
   );
 };
 
-const Result = ({ book }) => {
+const BooksList = ({ books }: IBooksListProps) => {
+  if (!books) return <div>No books found.</div>;
+
   return (
-    <div>
-      <div>
-        <div>이미지</div>
-        <div></div>
+    <div className="container mx-auto px-4 max-h-60 overflow-y-auto">
+      {books.map((book) => (
+        <BookItem key={book.isbn} book={book} />
+      ))}
+    </div>
+  );
+};
+
+const BookItem = ({ book }: IBookItemProps) => {
+  const setSelectedBooksState = useSetRecoilState(selectedBooksState);
+
+  // 책 선택했을 때 books 배열에 추가하는 함수
+  // 배열에 추가 후 ok -> searchModal 닫기
+  const handleSelectBook = (bookData: IBook) => {
+    setSelectedBooksState((prevBooks) => [...prevBooks, bookData]);
+  };
+  return (
+    <div
+      onClick={() => handleSelectBook(book)}
+      className="flex items-start space-x-4 bg-white p-4 rounded-lg shadow my-2"
+    >
+      <img
+        src={book.thumbnail}
+        alt={book.title}
+        className="w-20 h-30 object-cover rounded"
+      />
+      <div className="flex flex-col flex-grow">
+        <h3 className="text-xl font-semibold">{book.title}</h3>
+        <p className="text-gray-600">{book.authors.join(", ")}</p>
+        <p className="text-gray-500">{book.publisher}</p>
+        <p className="text-gray-400 text-sm">
+          {extractFirstSentence(book.contents)}
+        </p>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { useSession } from "next-auth/react";
 import { useSetRecoilState } from "recoil";
-import { UserInfoState } from "@/common/store/atom";
+import { userInfoState } from "@/common/store/atom";
 
 export default function GlobalSetting({
   children,
@@ -13,7 +13,7 @@ export default function GlobalSetting({
   children: React.ReactNode;
 }) {
   const { data: session } = useSession();
-  const setUserInfoState = useSetRecoilState(UserInfoState);
+  const setUserInfoState = useSetRecoilState(userInfoState);
 
   console.log("user", session);
   // next-auth 로그인으로 정보 들어오면 전역 변수인 userInfoState에 저장

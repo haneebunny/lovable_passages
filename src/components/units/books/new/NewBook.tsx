@@ -1,8 +1,15 @@
 "use client";
-import axios from "axios";
 import styled from "@emotion/styled";
 import { useForm, SubmitHandler } from "react-hook-form";
+
+// components
 import NewBookForm from "./NewBookForm";
+import SearchModal from "../search/SearchModal";
+// type
+import { IBook } from "../bookTypes";
+import { useEffect } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { selectedBooksState } from "@/common/store/atom";
 
 type FormData = {
   name: string;
@@ -10,6 +17,7 @@ type FormData = {
 };
 
 export default function NewBook() {
+  const [selectedBooks, setSelectedBooks] = useRecoilState(selectedBooksState);
   const {
     register,
     handleSubmit,
@@ -17,16 +25,18 @@ export default function NewBook() {
     formState: { errors },
   } = useForm<FormData>();
 
-  const tempFunction = async () => {
-    console.log("함수");
-    const response = await axios.get("/api/books/search", {
-      params: {
-        query: "모순",
-      },
-    });
+  // 컴포넌트 마운트 시 localStorage에서 책 목록을 불러옴
+  useEffect(() => {
+    const savedBooks = localStorage.getItem("selectedBooksState");
+    if (savedBooks) {
+      setSelectedBooks(JSON.parse(savedBooks));
+    }
+  }, [setSelectedBooks]);
 
-    console.log(response?.data?.data?.documents);
-  };
+  // selectedBooks 상태가 변경될 때마다 localStorage에 저장
+  useEffect(() => {
+    localStorage.setItem("selectedBooksState", JSON.stringify(selectedBooks));
+  }, [selectedBooks]);
 
   const onSubmitForm: SubmitHandler<FormData> = (data: FormData) => {
     // event.preventDefault(); // react-hook-form 에선 필요없는 듯...
@@ -38,7 +48,9 @@ export default function NewBook() {
 
   return (
     <div className="flex flex-col items-center">
-      <NewBookForm />
+      {selectedBooks.map((book, index) => (
+        <NewBookForm key={book.isbn || index} book={book} />
+      ))}
       <div>
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <input
@@ -53,15 +65,9 @@ export default function NewBook() {
         <Button>
           <span>저장</span>
         </Button>
-        <button onClick={tempFunction}>rrrr</button>
       </div>
-      <AddButton
-        onClick={() => {
-          tempFunction();
-        }}
-      >
-        +
-      </AddButton>
+      <AddButton>+</AddButton>
+      <SearchModal />
     </div>
   );
 }
