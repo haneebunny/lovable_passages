@@ -26,3 +26,7 @@ export interface IBooksListProps {
 export interface IBookItemProps {
   book: IBook;
 }
+
+export interface ISearchModalProps {
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}

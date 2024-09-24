@@ -7,11 +7,12 @@ import {
   IBookInfo,
   IBookItemProps,
   IBooksListProps,
+  ISearchModalProps,
 } from "../bookTypes";
 import { useSetRecoilState } from "recoil";
 import { selectedBooksState } from "@/common/store/atom";
 
-const SearchModal = () => {
+const SearchModal = ({ setIsModalOpen }: ISearchModalProps) => {
   const [searchType, setSearchType] = useState("all"); // all, title, author
   const [query, setQuery] = useState("");
   const [bookInfo, setBookInfo] = useState<IBookInfo>();
@@ -73,7 +74,10 @@ const SearchModal = () => {
           </button>
           <div></div>
         </form>
-        <button className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
+        <button
+          className="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+          onClick={() => setIsModalOpen(false)}
+        >
           Close
         </button>
 

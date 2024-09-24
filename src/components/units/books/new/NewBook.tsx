@@ -7,7 +7,7 @@ import NewBookForm from "./NewBookForm";
 import SearchModal from "../search/SearchModal";
 // type
 import { IBook } from "../bookTypes";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { selectedBooksState } from "@/common/store/atom";
 
@@ -24,6 +24,8 @@ export default function NewBook() {
     watch,
     formState: { errors },
   } = useForm<FormData>();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 컴포넌트 마운트 시 localStorage에서 책 목록을 불러옴
   useEffect(() => {
@@ -66,8 +68,9 @@ export default function NewBook() {
           <span>저장</span>
         </Button>
       </div>
-      <AddButton>+</AddButton>
-      <SearchModal />
+      <AddButton onClick={() => setIsModalOpen(true)}>+</AddButton>
+
+      {isModalOpen && <SearchModal setIsModalOpen={setIsModalOpen} />}
     </div>
   );
 }
